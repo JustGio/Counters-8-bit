@@ -15,7 +15,7 @@ use ieee.std_logic_unsigned.all;
 
 entity counters is
   Port ( clk: in std_logic;
-        rst: in std_logic;
+--        rst: in std_logic;
         switch: in std_logic_vector(3 downto 0);
         led: out std_logic_vector(3 downto 0));
 end counters;
@@ -28,6 +28,7 @@ Port ( clk: in std_logic;
 end component clock_divider;
 
 signal clk_1hz: std_logic:='0';
+signal rst: std_logic:='0';
 signal ring_en, bin_en, j_en, fib_en: std_logic:='0';
 signal led_temp: std_logic_vector(3 downto 0):="0000";
 signal counter: integer:=0;
@@ -43,6 +44,9 @@ begin
 if (rising_edge(clk_1hz)) then
     case switch is
         when "0000" =>
+            bin_en<='0';
+            fib_en<='0';
+            j_en<='0';
             if (ring_en='0') then
                 ring_en<='1';
                 led_temp<="1000";
@@ -53,6 +57,8 @@ if (rising_edge(clk_1hz)) then
                 led_temp(3)<=led_temp(0);
             end if;
         when "0001" =>
+            fib_en<='0';
+            j_en<='0';
             ring_en<='0';
             if (bin_en='0') then
                 bin_en<='1';
@@ -65,6 +71,9 @@ if (rising_edge(clk_1hz)) then
             end if;
 
         when "0010" =>
+            bin_en<='0';
+            j_en<='0';
+            ring_en<='0';
               if (fib_en = '0') then
                 fib_en<='1';
                 curr_fib <= "0000";
@@ -83,6 +92,9 @@ if (rising_edge(clk_1hz)) then
              end if;
             led_temp<=curr_fib;
         when "0100" =>
+            fib_en<='0';
+            bin_en<='0';
+            ring_en<='0';
             if (j_en<='0') then
                 j_en<='1';
                 led_temp<="0000";
