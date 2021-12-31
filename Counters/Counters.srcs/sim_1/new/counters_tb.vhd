@@ -20,7 +20,7 @@ end counters_tb;
 architecture Behavioral of counters_tb is
 component counters is
       Port ( clk: in std_logic;
-        rst: in std_logic;
+--        rst: in std_logic;
         switch: in std_logic_vector(3 downto 0);
         led: out std_logic_vector(3 downto 0));
 end component counters;
@@ -29,17 +29,17 @@ signal switch_tb, led_tb: std_logic_vector(3 downto 0);
 
 
 begin
-uut: counters port map( clk=>clk_tb, rst=>rst_tb, switch=>switch_tb, led=>led_tb);
+uut: counters port map( clk=>clk_tb, switch=>switch_tb, led=>led_tb);
 
-process
-begin
-rst_tb<='1';
-wait for 8 ns;
-rst_tb<='0';
-wait;
+--process
+--begin
+--rst_tb<='1';
+--wait for 8 ns;
+--rst_tb<='0';
+--wait;
 
 
-end process;
+--end process;
 
 process
 begin
