@@ -1,7 +1,7 @@
 # Counters-8-bit
 ## Lab 1 - Counter Programs
 
-## Introduction
+### Introduction
 In this lab four different counters are created in order to be implemented on a FPGA board (Zybo Z7-20). The four counters
 created were ring counter, binary counter, fibonacci counter, and the johnson counter using the LED's and switches on the board.
 A clock divider is also created in order to be able to see the output of the LED's on the board to the human eye. The frequency of the FPGA is 125 MHz which is slowed down to 1 Hz.
