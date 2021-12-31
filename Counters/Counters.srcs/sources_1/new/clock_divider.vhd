@@ -30,7 +30,7 @@ begin
         if (rst = '1') then
             count <= 0;
             clk_temp<='0';
-        elsif (count > 62499999) then
+        elsif (count > 1) then
             count <= 0;
             clk_temp <= not clk_temp;
         else
