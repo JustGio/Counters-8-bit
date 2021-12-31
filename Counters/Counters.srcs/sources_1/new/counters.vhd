@@ -21,11 +21,7 @@ entity counters is
 end counters;
 
 architecture Behavioral of counters is
-component clock_divider is
-Port ( clk: in std_logic;
-         rst: in std_logic;
-         clk_out: out std_logic );
-end component clock_divider;
+
 
 signal clk_1hz: std_logic:='0';
 signal rst: std_logic:='0';
@@ -36,12 +32,12 @@ signal curr_fib: std_logic_vector(3 downto 0):="0000";
 signal next_fib: std_logic_vector(3 downto 0):="0001";
 begin
 
-uut: clock_divider port map(clk=>clk, rst=>rst, clk_out=>clk_1hz);
 
-process (clk_1hz)
+
+process (clk)
 begin
 
-if (rising_edge(clk_1hz)) then
+if (rising_edge(clk)) then
     case switch is
         when "0000" =>
             bin_en<='0';
