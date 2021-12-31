@@ -52,8 +52,15 @@ end process;
 
 process
 begin
+switch_tb<="0000";
+wait for 200 ns;
+switch_tb<="0001";
+wait for 200 ns;
+switch_tb<="0010";
+wait for 200 ns;
 switch_tb<="0100";
-wait for 24 ns;
+wait for 200 ns;
+switch_tb<="1100";
 wait;
 end process;
 
