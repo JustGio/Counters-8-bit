@@ -52,6 +52,8 @@ if (rising_edge(clk)) then
                 led_temp(0)<=led_temp(1);
                 led_temp(3)<=led_temp(0);
             end if;
+          
+        
         when "0001" =>
             fib_en<='0';
             j_en<='0';
@@ -65,6 +67,7 @@ if (rising_edge(clk)) then
             else
                 led_temp<="0000";
             end if;
+           
 
         when "0010" =>
             bin_en<='0';
@@ -87,6 +90,7 @@ if (rising_edge(clk)) then
                 counter <= counter + 1;
              end if;
             led_temp<=curr_fib;
+           
         when "0100" =>
             fib_en<='0';
             bin_en<='0';
@@ -103,13 +107,14 @@ if (rising_edge(clk)) then
                 led_temp(1) <= led_temp(2);
                 led_temp(0)<=led_temp(1);
              end if;
+      
         when others=>
             ring_en<='0';
             fib_en<='0';
             bin_en<='0';
             j_en<='0';
             led_temp<="1111";
-        
+            
      end case;
      
 end if;     
