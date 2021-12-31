@@ -11,7 +11,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 --use UNISIM.VComponents.all;
 
 entity top_level is
-  Port (clk: in std_logic;
+  Port (clk_top: in std_logic;
         switch_top: in std_logic_vector(3 downto 0);
         led_top: out std_logic_vector(3 downto 0));
 end top_level;
@@ -31,12 +31,13 @@ component counters is
         led: out std_logic_vector(3 downto 0));
 end component counters;
 
-signal clk_1hz, rst: std_logic:='0';
+signal clk_1hz: std_logic:='1';
+signal rst: std_logic:='0';
 signal switch, led: std_logic_vector(3 downto 0);
 begin
 
-uut1: clock_divider port map(clk=>clk, rst=>rst, clk_out=>clk_1hz);
-uut2: counters port map (clk=>clk_1hz, switch=>switch_top, led=>led_top);
+uut1: clock_divider port map(clk=>clk_top, rst=>rst, clk_out=>clk_1hz);
+uut2: counters port map (clk=>clk_1hz, switch=>switch_top, led=>led);
 
 rst<='0';
 switch<=switch_top;
